@@ -54,14 +54,14 @@ public class GeometricGenerator : MonoBehaviour
         //Вершины 
         Vector3[] vert = new Vector3[]
         {
-            new Vector3(-dimensionsParallelipiped.x / 2f, -dimensionsParallelipiped.y / 2f, -dimensionsParallelipiped.z / 2f), // Вершина 0
-            new Vector3(dimensionsParallelipiped.x / 2f, -dimensionsParallelipiped.y / 2f, -dimensionsParallelipiped.z / 2f),  // Вершина 1
-            new Vector3(dimensionsParallelipiped.x / 2f, dimensionsParallelipiped.y / 2f, -dimensionsParallelipiped.z / 2f),   // Вершина 2
-            new Vector3(-dimensionsParallelipiped.x / 2f, dimensionsParallelipiped.y / 2f, -dimensionsParallelipiped.z / 2f),  // Вершина 3
-            new Vector3(-dimensionsParallelipiped.x / 2f, -dimensionsParallelipiped.y / 2f, dimensionsParallelipiped.z / 2f),  // Вершина 4
-            new Vector3(dimensionsParallelipiped.x / 2f, -dimensionsParallelipiped.y / 2f, dimensionsParallelipiped.z / 2f),   // Вершина 5
-            new Vector3(dimensionsParallelipiped.x / 2f, dimensionsParallelipiped.y / 2f, dimensionsParallelipiped.z / 2f),    // Вершина 6
-            new Vector3(-dimensionsParallelipiped.x / 2f, dimensionsParallelipiped.y / 2f, dimensionsParallelipiped.z / 2f)    // Вершина 7
+            new Vector3(-dimensionsParallelipiped.x * 0.5f, -dimensionsParallelipiped.y * 0.5f, -dimensionsParallelipiped.z * 0.5f), // Вершина 0
+            new Vector3(dimensionsParallelipiped.x * 0.5f, -dimensionsParallelipiped.y * 0.5f, -dimensionsParallelipiped.z * 0.5f),  // Вершина 1
+            new Vector3(dimensionsParallelipiped.x * 0.5f, dimensionsParallelipiped.y * 0.5f, -dimensionsParallelipiped.z * 0.5f),   // Вершина 2
+            new Vector3(-dimensionsParallelipiped.x * 0.5f, dimensionsParallelipiped.y * 0.5f, -dimensionsParallelipiped.z * 0.5f),  // Вершина 3
+            new Vector3(-dimensionsParallelipiped.x * 0.5f, -dimensionsParallelipiped.y * 0.5f, dimensionsParallelipiped.z * 0.5f),  // Вершина 4
+            new Vector3(dimensionsParallelipiped.x * 0.5f, -dimensionsParallelipiped.y * 0.5f, dimensionsParallelipiped.z * 0.5f),   // Вершина 5
+            new Vector3(dimensionsParallelipiped.x * 0.5f, dimensionsParallelipiped.y * 0.5f, dimensionsParallelipiped.z * 0.5f),    // Вершина 6
+            new Vector3(-dimensionsParallelipiped.x * 0.5f, dimensionsParallelipiped.y * 0.5f, dimensionsParallelipiped.z * 0.5f)    // Вершина 7
         };
 
         //треугольники
@@ -162,8 +162,8 @@ public class GeometricGenerator : MonoBehaviour
             // Вершины основания призмы
             float x = widthPrism * Mathf.Cos(angle);
             float z = widthPrism * Mathf.Sin(angle);
-            vertices[vertexIndex] = new Vector3(x, -heightPrism / 2f, z); // Нижняя вершина
-            vertices[vertexIndex + 1] = new Vector3(x, heightPrism / 2f, z); // Верхняя вершина
+            vertices[vertexIndex] = new Vector3(x, -heightPrism * 0.5f, z); // Нижняя вершина
+            vertices[vertexIndex + 1] = new Vector3(x, heightPrism * 0.5f, z); // Верхняя вершина
 
             // Треугольники основания призмы
             if (i < numSidesPrism - 1)

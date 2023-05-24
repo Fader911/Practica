@@ -1,22 +1,47 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickDetector : MonoBehaviour,IPointerClickHandler
+public class ClickDetector : MonoBehaviour,IPointerDownHandler
 {
-    public void OnPointerClick(PointerEventData eventData)
+    bool BClick = false;
+    bool BButtonClick = false;
+    
+    public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Click Detected");
+        if (BClick)
+        {
+            // Если объект уже выделен, снимаем выделение
+            BClick = false;
+            Debug.Log("off");
+        }
+        else
+        {
+            // Если объект не выделен, выделяем его
+            BClick = true;
+            Debug.Log("on");
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    public void ButtonClick()
+    {
+        if (BButtonClick)
+        {
+            BButtonClick = false;
+            Debug.Log("button off");
+        }
+        else
+        {
+            BButtonClick = true;
+            Debug.Log("button on");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (BClick == true && BButtonClick == true)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

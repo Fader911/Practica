@@ -18,7 +18,13 @@ public class GeometricGenerator : MonoBehaviour
     public float CapsuleHeight = 2f; // Высота капсулы
     public int CapsuleNumSegments = 12; // Количество сегментов капсулы
 
-    void Start()
+    bool SpawnMesh1 = false;
+    bool SpawnMesh2 = false;
+    bool SpawnMesh3 = false;
+    bool SpawnMesh4 = false;
+
+
+    void Update()
     {
         // Добавление компонента MeshFilter к игровому объекту
         MeshFilter m_f = GetComponent<MeshFilter>();
@@ -26,10 +32,26 @@ public class GeometricGenerator : MonoBehaviour
         Mesh mesh = new Mesh();
         m_f.mesh = mesh;
 
-        Parallelepiped(mesh);
-        //Sphere(mesh);
-        //Prism(mesh);
-        //Capsule(mesh); // еще не работает
+        if(SpawnMesh1 == true || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Parallelepiped(mesh);
+            SpawnMesh1 = true;
+        }
+        if (SpawnMesh2 == true || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Sphere(mesh);
+            SpawnMesh2 = true;
+        }
+        if (SpawnMesh3 == true || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Prism(mesh);
+            SpawnMesh3 = true;
+        }
+        if (SpawnMesh4 == true || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Capsule(mesh);
+            SpawnMesh4 = true;
+        }
 
         // Расчет нормалей для освещения
         mesh.RecalculateNormals();
@@ -41,11 +63,6 @@ public class GeometricGenerator : MonoBehaviour
         // Установка материала на компонент MeshRenderer
         MeshRenderer m_r = GetComponent<MeshRenderer>();
         m_r.material = material;
-    }
-
-    void Update()
-    {
-
     }
 
 

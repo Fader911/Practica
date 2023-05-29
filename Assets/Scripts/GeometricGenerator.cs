@@ -23,6 +23,12 @@ public class GeometricGenerator : MonoBehaviour
     bool SpawnMesh3 = false;
     bool SpawnMesh4 = false;
 
+    bool ColorMesh1 = false;
+    bool ColorMesh2 = false;
+    bool ColorMesh3 = false;
+    bool ColorMesh4 = false;
+
+
 
     void Update()
     {
@@ -58,8 +64,30 @@ public class GeometricGenerator : MonoBehaviour
 
         // Создание материала синего цвета
         Material material = new Material(Shader.Find("Standard"));
-        material.color = Color.blue;
 
+        if (ColorMesh1 == true || Input.GetKeyDown(KeyCode.Z))
+        {
+            material.color = Color.red;
+            ColorMesh1 = true;
+        }
+        if (ColorMesh2 == true || Input.GetKeyDown(KeyCode.X))
+        {
+            material.color = Color.blue;
+            ColorMesh1 = false;
+            ColorMesh2 = true;
+        }
+        if (ColorMesh3 == true || Input.GetKeyDown(KeyCode.C))
+        {
+            material.color = Color.green;
+            ColorMesh2 = false;
+            ColorMesh3 = true;
+        }
+        if (ColorMesh4 == true || Input.GetKeyDown(KeyCode.V))
+        {
+            material.color = Color.yellow;
+            ColorMesh3 = false;
+            ColorMesh4 = true;
+        }
         // Установка материала на компонент MeshRenderer
         MeshRenderer m_r = GetComponent<MeshRenderer>();
         m_r.material = material;

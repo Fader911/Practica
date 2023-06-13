@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GeometricGenerator.cs" />
+    <Compile Include="Assets\Scripts\SpawnObj.cs" />
     <Compile Include="Assets\Scripts\ClickDetector.cs" />
   </ItemGroup>
   <ItemGroup>

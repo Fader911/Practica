@@ -28,7 +28,10 @@ public class GeometricGenerator : MonoBehaviour
     bool ColorMesh3 = false;
     bool ColorMesh4 = false;
 
-
+    private void Start()
+    {
+        SpawnMesh1 = true;
+    }
 
     void Update()
     {
@@ -42,21 +45,33 @@ public class GeometricGenerator : MonoBehaviour
         {
             Parallelepiped(mesh);
             SpawnMesh1 = true;
+            SpawnMesh2 = false;
+            SpawnMesh3 = false;
+            SpawnMesh4 = false;
         }
         if (SpawnMesh2 == true || Input.GetKeyDown(KeyCode.Alpha2))
         {
             Sphere(mesh);
             SpawnMesh2 = true;
+            SpawnMesh1 = false;
+            SpawnMesh3 = false;
+            SpawnMesh4 = false;
         }
         if (SpawnMesh3 == true || Input.GetKeyDown(KeyCode.Alpha3))
         {
             Prism(mesh);
             SpawnMesh3 = true;
+            SpawnMesh1 = false;
+            SpawnMesh2 = false;
+            SpawnMesh4 = false;
         }
         if (SpawnMesh4 == true || Input.GetKeyDown(KeyCode.Alpha4))
         {
             Capsule(mesh);
             SpawnMesh4 = true;
+            SpawnMesh1 = false;
+            SpawnMesh2 = false;
+            SpawnMesh3 = false;
         }
 
         // Расчет нормалей для освещения

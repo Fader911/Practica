@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ClickDetector : MonoBehaviour,IPointerDownHandler
 {
     bool BClick = false;
-    bool BButtonClick = false;
-    
+    public Button Button;
+    private bool isSpawning = false;
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (BClick)
+        if (BClick == true)
         {
             // Если объект уже выделен, снимаем выделение
             BClick = false;
@@ -22,26 +23,22 @@ public class ClickDetector : MonoBehaviour,IPointerDownHandler
         }
     }
 
-
-    public void ButtonClick()
+    private void Start()
     {
-        if (BButtonClick)
-        {
-            BButtonClick = false;
-            Debug.Log("button off");
-        }
-        else
-        {
-            BButtonClick = true;
-            Debug.Log("button on");
-        }
+        Button.onClick.AddListener(ToggleSpawn);
     }
-    // Update is called once per frame
+    public void ToggleSpawn()
+    {
+        isSpawning = !isSpawning;
+    }
+
+
     void Update()
     {
-        if (BClick == true && BButtonClick == true)
+        if (BClick == true && isSpawning == true)
         {
             Destroy(this.gameObject);
+            isSpawning = false;
         }
     }
 }

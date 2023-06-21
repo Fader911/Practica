@@ -8,6 +8,8 @@ public class SpawnObj : MonoBehaviour
     public GameObject[] objs;
     public List<Transform> spawnPoints;
     public Button Button;
+    public bool Click;
+
 
     private bool isSpawning = false;
 

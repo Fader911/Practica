@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class ClickDetector : MonoBehaviour,IPointerDownHandler
 {
-    bool BClick = false;
+    public bool BClick = false;
     public Button Button;
     private bool isSpawning = false;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (BClick == true)
+        if (BClick)
         {
             // Если объект уже выделен, снимаем выделение
             BClick = false;
@@ -26,6 +27,7 @@ public class ClickDetector : MonoBehaviour,IPointerDownHandler
     private void Start()
     {
         Button.onClick.AddListener(ToggleSpawn);
+
     }
     public void ToggleSpawn()
     {

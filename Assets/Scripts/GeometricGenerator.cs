@@ -22,12 +22,13 @@ public class GeometricGenerator : MonoBehaviour
     bool SpawnMesh2 = false;
     bool SpawnMesh3 = false;
     bool SpawnMesh4 = false;
+    bool SpawnSelect = false;
 
     bool ColorMesh1 = false;
     bool ColorMesh2 = false;
     bool ColorMesh3 = false;
     bool ColorMesh4 = false;
-
+    bool ColorSelect = false;
     private void Start()
     {
         SpawnMesh1 = true;
@@ -41,7 +42,7 @@ public class GeometricGenerator : MonoBehaviour
         Mesh mesh = new Mesh();
         m_f.mesh = mesh;
 
-        if(SpawnMesh1 == true || Input.GetKeyDown(KeyCode.Alpha1))
+        if(SpawnMesh1 == true || Input.GetKeyDown(KeyCode.Alpha1) && SpawnSelect == false)
         {
             Parallelepiped(mesh);
             SpawnMesh1 = true;
@@ -49,7 +50,7 @@ public class GeometricGenerator : MonoBehaviour
             SpawnMesh3 = false;
             SpawnMesh4 = false;
         }
-        if (SpawnMesh2 == true || Input.GetKeyDown(KeyCode.Alpha2))
+        if (SpawnMesh2 == true || Input.GetKeyDown(KeyCode.Alpha2) && SpawnSelect == false)
         {
             Sphere(mesh);
             SpawnMesh2 = true;
@@ -57,7 +58,7 @@ public class GeometricGenerator : MonoBehaviour
             SpawnMesh3 = false;
             SpawnMesh4 = false;
         }
-        if (SpawnMesh3 == true || Input.GetKeyDown(KeyCode.Alpha3))
+        if (SpawnMesh3 == true || Input.GetKeyDown(KeyCode.Alpha3) && SpawnSelect == false)
         {
             Prism(mesh);
             SpawnMesh3 = true;
@@ -65,7 +66,7 @@ public class GeometricGenerator : MonoBehaviour
             SpawnMesh2 = false;
             SpawnMesh4 = false;
         }
-        if (SpawnMesh4 == true || Input.GetKeyDown(KeyCode.Alpha4))
+        if (SpawnMesh4 == true || Input.GetKeyDown(KeyCode.Alpha4) && SpawnSelect == false)
         {
             Capsule(mesh);
             SpawnMesh4 = true;
@@ -73,42 +74,63 @@ public class GeometricGenerator : MonoBehaviour
             SpawnMesh2 = false;
             SpawnMesh3 = false;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SpawnSelect = true;
+        }
+
 
         // Расчет нормалей для освещения
         mesh.RecalculateNormals();
 
-        // Создание материала синего цвета
+        ColorShapes();
+    }
+
+    void ColorShapes()
+    {
+        // Создание материала 
         Material material = new Material(Shader.Find("Standard"));
 
-        if (ColorMesh1 == true || Input.GetKeyDown(KeyCode.Z))
+        if (ColorMesh1 == true || Input.GetKeyDown(KeyCode.Z) && ColorSelect == false)
         {
             material.color = Color.red;
             ColorMesh1 = true;
+            ColorMesh2 = false;
+            ColorMesh3 = false;
+            ColorMesh4 = false;
         }
-        if (ColorMesh2 == true || Input.GetKeyDown(KeyCode.X))
+        if (ColorMesh2 == true || Input.GetKeyDown(KeyCode.X) && ColorSelect == false)
         {
             material.color = Color.blue;
             ColorMesh1 = false;
             ColorMesh2 = true;
+            ColorMesh3 = false;
+            ColorMesh4 = false;
         }
-        if (ColorMesh3 == true || Input.GetKeyDown(KeyCode.C))
+        if (ColorMesh3 == true || Input.GetKeyDown(KeyCode.C) && ColorSelect == false)
         {
             material.color = Color.green;
             ColorMesh2 = false;
             ColorMesh3 = true;
+            ColorMesh1 = false;
+            ColorMesh4 = false;
         }
-        if (ColorMesh4 == true || Input.GetKeyDown(KeyCode.V))
+        if (ColorMesh4 == true || Input.GetKeyDown(KeyCode.V) && ColorSelect == false)
         {
             material.color = Color.yellow;
             ColorMesh3 = false;
             ColorMesh4 = true;
+            ColorMesh1 = false;
+            ColorMesh2 = false;
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ColorSelect = true;
         }
         // Установка материала на компонент MeshRenderer
         MeshRenderer m_r = GetComponent<MeshRenderer>();
         m_r.material = material;
     }
-
-
     private void Parallelepiped(Mesh mesh)
     {
         //Вершины 
